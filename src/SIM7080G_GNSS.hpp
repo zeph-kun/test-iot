@@ -3,4 +3,5 @@
 
 void setup_GNSS();
 String loop_GNSS();
-void parse_GNSS_data(String mess);
+String parse_GNSS_data(String mess);
+String get_timestamp_and_pos(String mess);

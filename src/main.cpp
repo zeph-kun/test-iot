@@ -9,12 +9,15 @@
 unsigned long period1;
 
 void everyXs() {
-  if ((millis() - period1) > 3000) {
+  if ((millis() - period1) > 1000) {
     period1 = millis();
+    parse_GNSS_data(loop_GNSS());
   }
 }
 
-
+void setup_CATM1() {
+  send_AT("AT+CNMP=38");
+}
 
 void setup() {
   pinMode(PIN_PWRKEY, OUTPUT); // déclaration de la pin powerkey du cpu en sortie
@@ -26,9 +29,6 @@ void setup() {
   period1 = millis();
 
   setup_GNSS();
-  String mess = loop_GNSS();
-  Serial.println(mess);
-  parse_GNSS_data(mess);
 }
 
 void loop() {

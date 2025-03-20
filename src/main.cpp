@@ -4,6 +4,7 @@
 #include "SIM7080G_POWER.hpp"
 #include "SIM7080G_GNSS.hpp"
 #include "SIM7080G_CATM1.hpp"
+#include "SIM7080G_TCP.hpp"
 
 // Serial = port du PC
 
@@ -30,6 +31,8 @@ void setup() {
   //Serial.println("Hard Reset Done");
   setup_CATM1();
   Serial.println("Setup CatM1 done");
+  TCP_send();
+  Serial.println("Data send");
   //setup_GNSS();
   //Serial.println("Setup GNSS Done");
 }

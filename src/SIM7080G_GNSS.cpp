@@ -48,7 +48,7 @@ String parse_GNSS_data(String mess) {
                     String sec = field.substring(12, 14);
                     time_gnss.tm_sec = sec.toInt();
                 }
-                if (index == 3) {
+                if (index == 3) { // Latitude
                     Serial.println("Latitude : " + field);
                     String latitude_str_1 = field.substring(0, field.indexOf('.'));
                     String latitude_str_2 = field.substring(field.indexOf('.') + 1, 9);
@@ -57,7 +57,7 @@ String parse_GNSS_data(String mess) {
                     Serial.println(latitude.entier);
                     Serial.println(latitude.decimal);
                 }
-                if (index == 4) {
+                if (index == 4) { // Longitude
                     Serial.println("Longitude : " + field);
                     String longitude_str_1 = field.substring(0, field.indexOf('.'));
                     String longitude_str_2 = field.substring(field.indexOf('.') + 1, 8);

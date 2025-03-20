@@ -3,6 +3,7 @@
 #include "ARGALI_PINOUT.hpp"
 #include "SIM7080G_POWER.hpp"
 #include "SIM7080G_GNSS.hpp"
+#include "SIM7080G_CATM1.hpp"
 
 // Serial = port du PC
 
@@ -11,12 +12,9 @@ unsigned long period1;
 void everyXs() {
   if ((millis() - period1) > 1000) {
     period1 = millis();
-    parse_GNSS_data(loop_GNSS());
+    //loop_CATM1();
+    //parse_GNSS_data(loop_GNSS());
   }
-}
-
-void setup_CATM1() {
-  send_AT("AT+CNMP=38");
 }
 
 void setup() {
@@ -28,7 +26,12 @@ void setup() {
   Sim7080G.begin(Sim7080G_BAUDRATE, SERIAL_8N1, 20, 21);
   period1 = millis();
 
-  setup_GNSS();
+  //hard_reset();
+  //Serial.println("Hard Reset Done");
+  setup_CATM1();
+  Serial.println("Setup CatM1 done");
+  //setup_GNSS();
+  //Serial.println("Setup GNSS Done");
 }
 
 void loop() {

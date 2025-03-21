@@ -14,31 +14,25 @@ void everyXs() {
   if ((millis() - period1) > 1000) {
     period1 = millis();
     //loop_CATM1();
-    //parse_GNSS_data(loop_GNSS());
+    parse_GNSS_data(send_AT("AT+CGNSINF"));
   }
 }
 
 void setup() {
-  pinMode(PIN_PWRKEY, OUTPUT); // déclaration de la pin powerkey du cpu en sortie
+  pinMode(PIN_PWRKEY, OUTPUT); // Déclaration de la pin powerkey du cpu en sortie
   turn_on_SIM7080G();
-
   Serial.begin(115200); //9600
-
   Sim7080G.begin(Sim7080G_BAUDRATE, SERIAL_8N1, 20, 21);
   period1 = millis();
 
-  //hard_reset();
-  //Serial.println("Hard Reset Done");
   setup_CATM1();
   Serial.println("Setup CatM1 done");
   TCP_send();
   Serial.println("Data send");
-  //setup_GNSS();
-  //Serial.println("Setup GNSS Done");
 }
 
 void loop() {
-  everyXs();
+  //everyXs();
 }
 
 /*void battery_SIM7080() {
@@ -49,6 +43,3 @@ void loop() {
   }
   return tmp;
 }*/
-
-
-//"AT+CPOWD=1"

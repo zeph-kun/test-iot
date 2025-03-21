@@ -19,20 +19,11 @@ void send_TCP_packet_data(json *j) {
 void TCP_send()
 {
     json j = {
-        {"imei", send_AT("AT+GSN")},
+        {"id", 1},
+        {"imei", send_AT("AT+GSN")}
     };
-    send_AT("AT+CAOPEN=0,0,\"TCP\",\"rnthv-185-223-151-250.a.free.pinggy.link\",46205");
+    send_AT("AT+CAOPEN=0,0,\"TCP\",\"rnkot-185-223-151-250.a.free.pinggy.link\",38585");
     send_TCP_packet_data(&j);
 
-
-    //cf datasheet
-    //attendre le charactère '>' avant d'envoyer la data
-    /*String toto = send_AT("AT+CASEND=0,6");
-    if (toto.indexOf(">") != -1) {
-        send_AT("coucou");
-    }*/
-
-
-    //send_TCP_packet_data(&j);
-    //send_AT(AT+CARECV,1460);
+    //Modify response of write command : send_AT(AT+CARECV,1460);
 }

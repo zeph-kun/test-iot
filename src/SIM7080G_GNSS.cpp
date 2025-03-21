@@ -9,13 +9,11 @@ struct float_gnss {
 };
 
 void setup_GNSS(){
-    send_AT("AT+CGNSPWR=1");
-    send_AT("AT+CGNSPWR=1,0,0,1,0");
-}
+    Serial.println(send_AT("AT+CGNSPWR=1"));
+    String response = send_AT("AT+CGNSPWR=1,0,0,1,0");
 
-String loop_GNSS(){
-    String message = send_AT("AT+CGNSINF");
-    return message;
+    if (response.indexOf("ERROR"))
+        Serial.println("AT+CGNSPWR=1,0,0,1,0 Command Failed !");
 }
 
 String parse_GNSS_data(String mess) {
@@ -73,11 +71,9 @@ String parse_GNSS_data(String mess) {
         }
     }
     timestamp = mktime(&time_gnss);
-    //Serial.println(timestamp);
     String lastField = mess.substring(start);
     if (lastField.length() > 0) {
         parsedData += lastField;
     }
-    //Serial.println(parsedData);
     return parsedData;
 }
